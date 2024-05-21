@@ -19,7 +19,7 @@ export class FolderPage implements OnInit {
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    /*
+    /*g
     this.firestore.addNote({title: 'testtitle', text: 'test text hhehe'}).then( data => {
       console.log(data);
     });
