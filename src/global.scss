@@ -56,6 +56,11 @@ Diagram on background: #6957E9
     height: 100%;
 }
 
+.background-6957E9 {
+    --background: #6957E9;
+    background-color: #6957E9;
+}
+
 .background-F1F1FB {
     --background: #F1F1FB;
     background-color: #F1F1FB;
@@ -91,6 +96,14 @@ Diagram on background: #6957E9
     display: flex;
 }
 
+.display-inline-block {
+    display: inline-block;
+}
+
+.float-left {
+    float: left;
+}
+
 .font-weight-bold {
     font-weight: bold;
 }
@@ -116,6 +129,10 @@ Diagram on background: #6957E9
     height: 100%;
 }
 
+.height-100per-minus-100px {
+    height: calc(100% - 100px);
+}
+
 .height-200px {
     height: 200px;
 }
@@ -137,6 +154,10 @@ Diagram on background: #6957E9
     margin-top: 15px;
 }
 
+.margin-top-100px {
+    margin-top: 100px;
+}
+
 .margin-vertical-auto {
     margin-top: auto;
     margin-bottom: auto;
@@ -144,6 +165,10 @@ Diagram on background: #6957E9
 
 .overflow-scroll {
     overflow: scroll;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
 }
 
 .padding-0 {
@@ -162,12 +187,28 @@ Diagram on background: #6957E9
     text-align: center;
 }
 
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+  }
+
 .width-30px {
     width: 30px;
 }
 
 .width-50px {
     width: 50px;
+}
+
+.width-70px {
+    width: 70px;
+}
+
+.width-150px {
+    width: 150px;
 }
 
 .width-50per {
@@ -180,4 +221,8 @@ Diagram on background: #6957E9
 
 .width-100per {
     width: 100%;
+}
+
+.width-100per-minus-150px {
+    width: calc(100% - 150px);
 }

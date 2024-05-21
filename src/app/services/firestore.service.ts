@@ -21,6 +21,11 @@ export class FirestoreService {
     return addDoc(stockRef, stock);
   }
 
+  getStocks(): Observable<Stock[]> {
+    const stockRef = collection(this.firestore, 'stocks');
+    return collectionData(stockRef, {idField: 'id'}) as Observable<Stock[]>;
+  }
+
   getNotes(): Observable<Note[]> {
     const notesRef = collection(this.firestore, 'notes');
     return collectionData(notesRef, { idField: 'id'}) as Observable<Note[]>;

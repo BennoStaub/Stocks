@@ -4,6 +4,7 @@ export interface Stock extends Record<string, any> {
     url: string;
     eps: any;
     price: number;
+    avgKGV: number;
     2016: any;
     2017: any;
     2018: any;

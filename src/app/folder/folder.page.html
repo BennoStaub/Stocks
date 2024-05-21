@@ -1,8 +1,20 @@
 <ion-content [fullscreen]="true">
-  <ion-row class="height-200px display-flex">
-    <button (click)="addStock()" class="margin-horizontal-auto margin-vertical-auto">
+  <div class="width-150px height-100per display-flex background-6957E9 float-left">
+    <button (click)="addStock()" class="margin-horizontal-auto margin-top-100px height-50px">
       <img src="../../assets/icon/add-outline.svg" height="50">
     </button>
-  </ion-row>
+  </div>
+  <div class="width-100per-minus-150px float-left height-100per">
+    <div class="margin-top-100px width-100per height-100per-minus-100px">
+      <div *ngFor="let stock of stockList" class="width-80per margin-horizontal-auto">
+        <span class="display-inline-block width-150px vertical-align-middle">{{stock.name}}</span>
+        <span class="display-inline-block width-150px white-space-nowrap overflow-x-hidden vertical-align-middle"><a href="{{stock.url}}">{{stock.url}}</a></span>
+        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock.avgKGV}}</span>
+        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2024].estimatedPrice}}</span>
+        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2025].estimatedPrice}}</span>
+        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2026].estimatedPrice}}</span>
+      </div>
+    </div>
+  </div>
 
 </ion-content>

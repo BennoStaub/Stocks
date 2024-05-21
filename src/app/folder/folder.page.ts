@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
 import { PopoverController } from '@ionic/angular';
 import { AddStockPopoverPage } from '../popovers/add-stock-popover/add-stock-popover.page';
+import { Stock } from 'src/interfaces/stock.interface';
 
 @Component({
   selector: 'app-folder',
@@ -12,6 +13,9 @@ import { AddStockPopoverPage } from '../popovers/add-stock-popover/add-stock-pop
 export class FolderPage implements OnInit {
   public folder!: string;
   private activatedRoute = inject(ActivatedRoute);
+  stockList: Stock[] = [];
+
+
   constructor(
     private firestore: FirestoreService,
     private popoverCtrl: PopoverController
@@ -24,6 +28,11 @@ export class FolderPage implements OnInit {
       console.log(data);
     });
     */
+   this.firestore.getStocks().subscribe( stockList => {
+    this.stockList = stockList;
+    this.processStockList(this.stockList);
+    console.log(stockList);
+   })
   }
 
   async addStock() {
@@ -35,5 +44,27 @@ export class FolderPage implements OnInit {
       }
     });
     return await popover.present();
+  }
+
+  processStockList(stockList: Stock[]) {
+    stockList.forEach( stock => {
+      let sumKGV: number = 0;
+      let avgKGV: number = 0;
+      let numberYearEntriesKGV: number = 0;
+      let startYear: number = 2016;
+      let currentYear: number = new Date().getFullYear();
+      while(startYear <= currentYear + 2) {
+        if(stock[startYear].kgv) {
+          sumKGV += stock[startYear].kgv;
+          numberYearEntriesKGV += 1;
+        }
+        startYear += 1;
+      }
+      avgKGV = sumKGV / numberYearEntriesKGV;
+      stock.avgKGV = avgKGV;
+      stock[2024].estimatedPrice = stock[2024].estimatedEps * avgKGV;
+      stock[2025].estimatedPrice = stock[2025].estimatedEps * avgKGV;
+      stock[2026].estimatedPrice = stock[2026].estimatedEps * avgKGV;
+    })
   }
 }
