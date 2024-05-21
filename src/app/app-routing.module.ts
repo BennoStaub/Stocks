@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'add-stock-popover',
+    loadChildren: () => import('./popovers/add-stock-popover/add-stock-popover.module').then( m => m.AddStockPopoverPageModule)
   }
 ];
 

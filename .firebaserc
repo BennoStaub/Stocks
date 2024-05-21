@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "stocks0": {
+      "hosting": {
+        "app": [
+          "stocks0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "stocks0"
+  }
+}

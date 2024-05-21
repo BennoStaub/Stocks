@@ -1,0 +1,54 @@
+<div class="height-100per background-F1F1FB color-80808D">
+  
+  <div class="height-10per font-weight-bold display-flex">
+    <span class="margin-auto">
+      Add new stock:
+    </span>
+  </div>
+  <div class="height-80per overflow-scrol">
+    <div class="width-80per margin-horizontal-auto">
+      Stock name:
+      <ion-input [(ngModel)]="stock.name" class="border-radius-15px padding-left-7px margin-top-10px background-FFFFFF width-50per" type="text" autocapitalize="on" placeholder="Name"></ion-input>
+    </div>
+    <div class="width-80per margin-horizontal-auto margin-top-15px">
+      Link:
+      <ion-input [(ngModel)]="stock.url" class="border-radius-15px padding-left-7px margin-top-10px background-FFFFFF width-50per" type="text" autocapitalize="on" placeholder="Name"></ion-input>
+    </div>
+    <div class="width-80per margin-horizontal-auto margin-top-15px">
+      Current stock price:
+      <ion-input [(ngModel)]="stock.price" class="background-FFFFFF border-radius-15px padding-left-7px width-50px" type="number" autocapitalize="on" placeholder="0"></ion-input>
+    </div>
+    <div class="width-80per margin-horizontal-auto margin-top-15px">
+      Earnings per share history:
+      <ion-row>
+        <ion-col *ngFor="let year of histYears" class="padding-0">
+          <span class="display-block text-align-center width-50px">{{year}}</span>
+          <ion-input [(ngModel)]="stock[year].eps" class="background-FFFFFF border-radius-15px padding-left-7px width-50px" type="number" autocapitalize="on" placeholder="0"></ion-input>
+          </ion-col>
+      </ion-row>
+    </div>
+    <div class="width-80per margin-horizontal-auto margin-top-15px">
+      <div class="width-50per">
+        Earnings per share estimated:
+        <ion-row>
+          <ion-col *ngFor="let year of estYears" class="padding-0">
+            <span class="display-block text-align-center width-50px">{{year}}</span>
+            <ion-input [(ngModel)]="stock[year].estimatedEps" class="background-FFFFFF border-radius-15px padding-left-7px width-50px" type="number" autocapitalize="on" placeholder="0"></ion-input>
+            </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <div class="width-80per margin-horizontal-auto margin-top-15px">
+      KGV:
+      <ion-row>
+        <ion-col *ngFor="let year of histYears" class="padding-0">
+          <span class="display-block text-align-center width-50px">{{year}}</span>
+          <ion-input [(ngModel)]="stock[year].kgv" class="background-FFFFFF border-radius-15px padding-left-7px width-50px" type="number" autocapitalize="on" placeholder="0"></ion-input>
+          </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div class="height-10per display-flex">
+    <ion-button (click)="save()" class="margin-horizontal-auto height-20px border-radius-15px">Press</ion-button>
+  </div>
+</div>
