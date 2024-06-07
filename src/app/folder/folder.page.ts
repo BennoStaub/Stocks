@@ -60,11 +60,52 @@ export class FolderPage implements OnInit {
         }
         startYear += 1;
       }
-      avgKGV = sumKGV / numberYearEntriesKGV;
+      avgKGV = Number((sumKGV / numberYearEntriesKGV).toFixed(1));
       stock.avgKGV = avgKGV;
       stock[2024].estimatedPrice = stock[2024].estimatedEps * avgKGV;
       stock[2025].estimatedPrice = stock[2025].estimatedEps * avgKGV;
       stock[2026].estimatedPrice = stock[2026].estimatedEps * avgKGV;
     })
+  }
+
+  computePricePotential(pricePotential: number, price: number) {
+    let potential: number = (((pricePotential / price) - 1) * 100);
+    let potentialString : string = potential.toFixed(1);
+    if(potential >= 0) {
+      potentialString = '+' + potentialString + '%';
+    } else {
+      potentialString = potentialString + '%';
+    }
+    return potentialString;
+  }
+
+  computeBackgroundColor(pricePotential: number, price: number) {
+    let colors: string[] = ['#7c0a02', '#89221b', '#963a34', '#ffffff', '#0eff00', '#1fc600', '#089000', '#0a5d00'];
+    let ratio : number = pricePotential / price;
+    // - 50%- -> 0
+    // - 50-31% -> 1
+    // - 30-11% -> 2
+    // - 10-1% -> 3
+    // + 0-33% -> 4
+    // + 34-66% -> 5
+    // + 67-100% -> 6
+    // + 101%+ -> 7
+    if(ratio <= 0.5) {
+      return colors[0];
+    } else if(ratio <= 0.7) {
+      return colors[1];
+    } else if(ratio <= 0.9) {
+      return colors[2];
+    } else if(ratio <= 1.1) {
+      return colors[3];
+    } else if(ratio <= 1.33) {
+      return colors[4];
+    } else if(ratio <= 1.66) {
+      return colors[5];
+    } else if(ratio <= 2) {
+      return colors[6];
+    } else {
+      return colors[7];
+    }
   }
 }

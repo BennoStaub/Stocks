@@ -6,13 +6,21 @@
   </div>
   <div class="width-100per-minus-150px float-left height-100per">
     <div class="margin-top-100px width-100per height-100per-minus-100px">
+      <div class="width-80per margin-horizontal-auto">
+        <span class="display-inline-block width-150px vertical-align-middle font-size-30px">Stock</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">Price</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">KGV</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">2024</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">2025</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">2026</span>
+      </div>
       <div *ngFor="let stock of stockList" class="width-80per margin-horizontal-auto">
-        <span class="display-inline-block width-150px vertical-align-middle">{{stock.name}}</span>
-        <span class="display-inline-block width-150px white-space-nowrap overflow-x-hidden vertical-align-middle"><a href="{{stock.url}}">{{stock.url}}</a></span>
-        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock.avgKGV}}</span>
-        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2024].estimatedPrice}}</span>
-        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2025].estimatedPrice}}</span>
-        <span class="display-inline-block width-70px vertical-align-middle text-align-center">{{stock[2026].estimatedPrice}}</span>
+        <span class="display-inline-block width-150px vertical-align-middle font-size-30px white-space-nowrap overflow-x-hidden"><a href="{{stock.url}}">{{stock.name}}</a></span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">{{stock.price}}</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">{{stock.avgKGV}}</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2024].estimatedPrice, stock.price)}">{{computePricePotential(stock[2024].estimatedPrice, stock.price)}}</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2025].estimatedPrice, stock.price)}">{{computePricePotential(stock[2025].estimatedPrice, stock.price)}}</span>
+        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2026].estimatedPrice, stock.price)}">{{computePricePotential(stock[2026].estimatedPrice, stock.price)}}</span>
       </div>
     </div>
   </div>

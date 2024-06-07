@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Stock } from 'src/interfaces/stock.interface';
 
@@ -27,7 +28,8 @@ export class AddStockPopoverPage implements OnInit {
   
 
   constructor(
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private popoverCtrl: PopoverController
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class AddStockPopoverPage implements OnInit {
   save() {
     console.log(this.stock);
     this.firestore.addStock(this.stock);
+    this.popoverCtrl.dismiss();
   }
 
 }
