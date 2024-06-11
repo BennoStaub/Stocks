@@ -14,6 +14,7 @@ export class FolderPage implements OnInit {
   public folder!: string;
   private activatedRoute = inject(ActivatedRoute);
   stockList: Stock[] = [];
+  yearList: string[] = ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
 
 
   constructor(
@@ -31,7 +32,6 @@ export class FolderPage implements OnInit {
    this.firestore.getStocks().subscribe( stockList => {
     this.stockList = stockList;
     this.processStockList(this.stockList);
-    console.log(stockList);
    })
   }
 
@@ -54,7 +54,7 @@ export class FolderPage implements OnInit {
       let startYear: number = 2016;
       let currentYear: number = new Date().getFullYear();
       while(startYear <= currentYear + 2) {
-        if(stock[startYear].kgv) {
+        if(stock[startYear].kgv && !stock[startYear].ignoreKGV) {
           sumKGV += stock[startYear].kgv;
           numberYearEntriesKGV += 1;
         }
@@ -107,5 +107,23 @@ export class FolderPage implements OnInit {
     } else {
       return colors[7];
     }
+  }
+
+  KGVValuesshown(stock: Stock) {
+    return stock.KGVValuesshown;
+  }
+
+  async showKGVValues(stock: Stock) {
+    stock.KGVValuesshown = !stock.KGVValuesshown;
+    await this.firestore.updateStock(stock);
+  }
+
+  async ignoreKGV(stock: Stock, year: string) {
+    if(stock[year].ignoreKGV) {
+      stock[year].ignoreKGV = !stock[year].ignoreKGV;
+    } else {
+      stock[year].ignoreKGV = true;
+    }
+    await this.firestore.updateStock(stock);
   }
 }

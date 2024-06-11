@@ -1,10 +1,12 @@
 export interface Stock extends Record<string, any> {
     key?: string;
+    id?: string;
     name: string;
     url: string;
     eps: any;
     price: number;
     avgKGV: number;
+    KGVValuesshown: boolean;
     2016: any;
     2017: any;
     2018: any;

@@ -17,7 +17,18 @@
       <div *ngFor="let stock of stockList" class="width-80per margin-horizontal-auto">
         <span class="display-inline-block width-150px vertical-align-middle font-size-30px white-space-nowrap overflow-x-hidden"><a href="{{stock.url}}">{{stock.name}}</a></span>
         <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">{{stock.price}}</span>
-        <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px">{{stock.avgKGV}}</span>
+        <span *ngIf="!KGVValuesshown(stock)" class="display-inline-flex width-200px vertical-align-middle text-align-center font-size-30px">
+          <span class="margin-horizontal-auto display-flex">
+            {{stock.avgKGV}}<img src="../../assets/icon-arrow-right.svg" height="30" class="margin-vertical-auto" (click)="showKGVValues(stock)">
+          </span>
+        </span>
+        <span *ngIf="KGVValuesshown(stock)" class="display-inline-flex vertical-align-middle text-align-center font-size-30px">
+          <span *ngFor="let year of yearList" class="margin-horizontal-auto display-flex margin-right-8px">
+            <span (click)="ignoreKGV(stock, year)" *ngIf="!stock[year].ignoreKGV">{{stock[year].kgv}}</span>
+            <span (click)="ignoreKGV(stock, year)" *ngIf="stock[year].ignoreKGV" class="color-80808D">{{stock[year].kgv}}</span>
+          </span>
+          <img src="../../assets/icon-arrow-right.svg" height="30" class="margin-vertical-auto" (click)="showKGVValues(stock)">
+        </span>
         <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2024].estimatedPrice, stock.price)}">{{computePricePotential(stock[2024].estimatedPrice, stock.price)}}</span>
         <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2025].estimatedPrice, stock.price)}">{{computePricePotential(stock[2025].estimatedPrice, stock.price)}}</span>
         <span class="display-inline-block width-200px vertical-align-middle text-align-center font-size-30px" [ngStyle]="{'background-color':computeBackgroundColor(stock[2026].estimatedPrice, stock.price)}">{{computePricePotential(stock[2026].estimatedPrice, stock.price)}}</span>
